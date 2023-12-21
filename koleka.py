@@ -6,28 +6,27 @@ from random import randint
 import discord
 from discord.ext import commands
 
-MY_GUILD = discord.Object(id=326035810338078720)
-TOKEN = "NzY3NzUwNzA1MzQ3NDI4NDAy.X42dkA.-F4xcqOsM5mF08N-AzYiBu0-eEw"
-bot = commands.Bot(command_prefix='k!', intents=discord.Intents.all(), application_id='767750705347428402')
+MY_GUILD = discord.Object(id=...)
+TOKEN = "..."
+bot = commands.Bot(command_prefix='k!', intents=discord.Intents.all(), application_id='...')
 
 
 @bot.event
 async def on_guild_join(guild):
-    json_file = open("/home/orelian/Bureau/Bot/tayeule_on_guild_join.json", "r", encoding="utf-8")
-    tayeule_on_guild_join = json.load(json_file)
+    json_file = open("/home/orelian/Bureau/Bot/config_on_guild_join.json", "r", encoding="utf-8")
+    config_on_guild_join = json.load(json_file)
 
-    tayeule_on_guild_join["serveurs"][str(guild.id)] = {"stonks_channel": None, "stonks_message": None,
-                                                        "admins": [f"id:{guild.owner_id}"]}
+    config_on_guild_join["serveurs"][str(guild.id)] = {"stonks_channel": None, "stonks_message": None, "admins": [f"id:{guild.owner_id}"]}
 
-    with open('/home/orelian/Bureau/Bot/tayeule_on_guild_join.json', 'w') as fp:
-        json.dump(tayeule_on_guild_join, fp)
+    with open('/home/orelian/Bureau/Bot/config_on_guild_join.json', 'w') as fp:
+        json.dump(config_on_guild_join, fp)
 
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
-    jeu = ["    Koleka Flight Simulator", " Koleka Truck Simulator", " Koleka Cooking Simulator",
+    jeu = [" Koleka Flight Simulator", " Koleka Truck Simulator", " Koleka Cooking Simulator",
            " Koleka Driving School",
            " Koleka For Speed"]
     game = discord.Game(jeu[randint(0, 4)])
